@@ -1,0 +1,6 @@
+{
+  "name": "太虚玄盘",
+  "description": "仙侠修仙风格八卦阵盘计时钟，融合十二时辰、八卦阵位、吐纳冥想与日程规划功能。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

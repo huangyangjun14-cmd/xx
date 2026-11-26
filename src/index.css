@@ -1,0 +1,290 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-serif: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Day Mode (白昼宣纸清境) */
+:root {
+  color-scheme: light;
+  --bg-canvas: #F3EEE3;
+  --bg-header: rgba(247, 243, 234, 0.88);
+  --bg-surface: rgba(252, 249, 242, 0.92);
+  --bg-inset: #EAE2D1;
+  --text-primary: #1C221F;
+  --text-secondary: #4B5550;
+  --text-muted: #6C7570;
+  --border-hairline: rgba(34, 42, 38, 0.14);
+  --border-strong: rgba(34, 42, 38, 0.28);
+
+  --dial-core: #FCF9F2;
+  --dial-mid: #EFE8D8;
+  --dial-outer: #E3DAC6;
+
+  /* Default palette: gold (Day) */
+  --theme-accent: #A57C2E;
+  --theme-accent-hover: #8E6922;
+  --theme-accent-soft: rgba(165, 124, 46, 0.14);
+  --theme-accent-fg: #FCF9F2;
+  --theme-secondary: #2B7A6B;
+}
+
+/* Night Mode (玄墨太虚夜观) */
+.dark {
+  color-scheme: dark;
+  --bg-canvas: #0B0F12;
+  --bg-header: rgba(11, 15, 18, 0.82);
+  --bg-surface: rgba(20, 27, 32, 0.90);
+  --bg-inset: #0B0F12;
+  --text-primary: #EDE6D6;
+  --text-secondary: #9BA39E;
+  --text-muted: #747D78;
+  --border-hairline: rgba(201, 169, 106, 0.18);
+  --border-strong: rgba(201, 169, 106, 0.42);
+
+  --dial-core: #0B1014;
+  --dial-mid: #0E1318;
+  --dial-outer: #141B21;
+
+  /* Default palette: gold (Night) */
+  --theme-accent: #C9A96A;
+  --theme-accent-hover: #D8BA7E;
+  --theme-accent-soft: rgba(201, 169, 106, 0.16);
+  --theme-accent-fg: #0B0F12;
+  --theme-secondary: #4E9F8D;
+}
+
+/* Palette Variants */
+:root[data-palette="jade"] {
+  --theme-accent: #1E7563;
+  --theme-accent-hover: #175D4E;
+  --theme-accent-soft: rgba(30, 117, 99, 0.14);
+  --theme-accent-fg: #FCF9F2;
+  --theme-secondary: #A57C2E;
+}
+
+.dark[data-palette="jade"] {
+  --theme-accent: #4E9F8D;
+  --theme-accent-hover: #62B5A3;
+  --theme-accent-soft: rgba(78, 159, 141, 0.16);
+  --theme-accent-fg: #0B0F12;
+  --theme-secondary: #C9A96A;
+}
+
+:root[data-palette="violet"] {
+  --theme-accent: #6D4AC9;
+  --theme-accent-hover: #5A3AB0;
+  --theme-accent-soft: rgba(109, 74, 201, 0.13);
+  --theme-accent-fg: #FCF9F2;
+  --theme-secondary: #A57C2E;
+}
+
+.dark[data-palette="violet"] {
+  --theme-accent: #A78BFA;
+  --theme-accent-hover: #BBA4FC;
+  --theme-accent-soft: rgba(167, 139, 250, 0.16);
+  --theme-accent-fg: #0B0F12;
+  --theme-secondary: #E5CA8B;
+}
+
+:root[data-palette="cinnabar"] {
+  --theme-accent: #B34722;
+  --theme-accent-hover: #963919;
+  --theme-accent-soft: rgba(179, 71, 34, 0.13);
+  --theme-accent-fg: #FCF9F2;
+  --theme-secondary: #A57C2E;
+}
+
+.dark[data-palette="cinnabar"] {
+  --theme-accent: #DE7854;
+  --theme-accent-hover: #EA8F6F;
+  --theme-accent-soft: rgba(222, 120, 84, 0.16);
+  --theme-accent-fg: #0B0F12;
+  --theme-secondary: #E5CA8B;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@keyframes spinSlowCw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinSlowCcw {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pulseAura {
+  0%, 100% {
+    opacity: 0.42;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.animate-spin-cw-slow {
+  animation: spinSlowCw 48s linear infinite;
+}
+
+.animate-spin-ccw-slow {
+  animation: spinSlowCcw 36s linear infinite;
+}
+
+.animate-spin-cw-med {
+  animation: spinSlowCw 24s linear infinite;
+}
+
+.animate-spin-ccw-fast {
+  animation: spinSlowCcw 16s linear infinite;
+}
+
+.animate-aura-pulse {
+  animation: pulseAura 3.6s ease-in-out infinite;
+}
+
+@keyframes btShockwave {
+  0% {
+    transform: scale(0.18);
+    opacity: 0.95;
+  }
+  70% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.38);
+    opacity: 0;
+  }
+}
+
+@keyframes btCoreBurst {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  25% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  55% {
+    transform: scale(0.95);
+    opacity: 0.92;
+  }
+  100% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes btBeamIn {
+  0% {
+    transform: scaleY(0.1);
+    opacity: 0;
+  }
+  35% {
+    transform: scaleY(1.15);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0.55;
+  }
+}
+
+@keyframes btLightningFlash {
+  0%, 100% {
+    opacity: 0;
+  }
+  12%, 22% {
+    opacity: 0.95;
+  }
+  16% {
+    opacity: 0.2;
+  }
+  45% {
+    opacity: 0.85;
+  }
+  65% {
+    opacity: 0.12;
+  }
+}
+
+@keyframes btTextReveal {
+  0% {
+    transform: translateY(16px) scale(0.94);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-bt-shockwave {
+  animation: btShockwave 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.animate-bt-shockwave-delayed {
+  animation: btShockwave 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.55s infinite;
+}
+
+.animate-bt-core {
+  animation: btCoreBurst 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-bt-beam {
+  animation: btBeamIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-bt-lightning {
+  animation: btLightningFlash 1.4s ease-in-out infinite;
+}
+
+.animate-bt-text {
+  animation: btTextReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
